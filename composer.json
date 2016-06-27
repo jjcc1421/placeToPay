@@ -1,13 +1,15 @@
 {
-    "name": "jjcaicedo/place-to-pay",
-    "description": "place to pay test package",
-    "authors": [
-        {
-            "name": "Juan Caicedo",
-            "email": "jjcc1421@gmail.com"
-        }
-    ],
-    "require": {
-        "illuminate/database": "^5.2"
+  "name": "jjcaicedo/place-to-pay",
+  "description": "place to pay test package",
+  "authors": [
+    {
+      "name": "Juan Caicedo",
+      "email": "jjcc1421@gmail.com"
     }
+  ],
+  "type": "library",
+  "license": "MIT",
+  "require": {
+    "illuminate/database": "^5.2"
+  }
 }
