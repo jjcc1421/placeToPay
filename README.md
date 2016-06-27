@@ -4,7 +4,7 @@ Place To pay package
 ##Installation 
 Composer:
 ```sh
-composer install jjcaicedo/place-to-pay
+composer require jjcaicedo/place-to-pay
 ```
 ##prerequisites 
 ###Data base table
