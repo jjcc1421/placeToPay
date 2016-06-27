@@ -10,7 +10,5 @@
   "minimum-stability": "dev",
   "license": "MIT",
   "require": {
-    "illuminate/database": "^5.2",
-    "vendor/packageb": "dev-master"
   }
 }
