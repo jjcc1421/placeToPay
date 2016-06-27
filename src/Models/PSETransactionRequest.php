@@ -34,9 +34,11 @@ class PSETransactionRequest
     /**
      * PSETransactionRequest constructor.
      * @param $params
+     * @throws \Exception - Not defined param
      */
     public function __construct($params)
     {
+        //check if data is array data
         if (is_array($params)) {
             $this->bankCode = $params['bankCode'];
             $this->bankInterface = $params['bankInterface'];
@@ -56,14 +58,34 @@ class PSETransactionRequest
             $this->ipAddress = $params['ipAddress'];
             $this->userAgent = $params['userAgent'];
 
+            $this->validatePerson($this->payer);
+            $this->validatePerson($this->buyer);
+            $this->validatePerson($this->shipping);
+
             foreach (get_object_vars($this) as $key => $attribute) {
+                //check if all data is defined
                 if (!isset($attribute))
+                    //Additional data is optional
                     if ($key != 'additionalData')
                         throw (new \Exception("Not defined $key"));
             }
 
         } else {
             throw (new \Exception("Not supported params"));
+        }
+    }
+
+    /**
+     * Check if data is instance of data or throw exception
+     * @param $data
+     * @throws \Exception - Not supported data
+     */
+    private function validatePerson($data)
+    {
+        //if no is instance of person throws exception
+        if (!($data instanceof Person)) {
+            $className = get_class($data);
+            throw (new \Exception("Person not supported type $className"));
         }
     }
 

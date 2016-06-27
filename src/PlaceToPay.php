@@ -43,6 +43,7 @@ class PlaceToPay
     }
 
     /**
+     * Create transaction
      * @param PSETransactionRequest $transactionRequest
      * @return PSETransactionResponse
      */
@@ -54,10 +55,14 @@ class PlaceToPay
         $response = $client->__soapCall('createTransaction', array($params));
         $pseResponse = new PSETransactionResponse(get_object_vars($response->createTransactionResult));
 
-        $payment = new Payment;
-        $payment->status = $pseResponse->getReturnCode();
-        $payment->transaction_id = $pseResponse->getTransactionID();
-        $payment->save();
+        try {
+            $payment = new Payment;
+            $payment->status = 'SENT';
+            $payment->transaction_id = $pseResponse->getTransactionID();
+            $payment->save();
+        } catch (\Exception $e) {
+            //No data base support
+        }
 
         return $pseResponse;
     }
@@ -73,10 +78,14 @@ class PlaceToPay
         $client = new SoapClient(self::$wsdl);
         $response = $client->__soapCall('getTransactionInformation', array($params));
         $transactionInformation = new TransactionInformation(get_object_vars($response->getTransactionInformationResult));
-        $payment = new Payment;
-        $payment->status = $transactionInformation->getReturnCode();
-        $payment->transaction_id = $transactionInformation->getTransactionID();
-        $payment->save();
+        try {
+            $payment = new Payment;
+            $payment->status = $transactionInformation->getTransactionState();
+            $payment->transaction_id = $transactionInformation->getTransactionID();
+            $payment->save();
+        } catch (\Exception $e) {
+            //No data base support
+        }
         return $transactionInformation;
     }
 
