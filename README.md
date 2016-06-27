@@ -1,11 +1,5 @@
 # placeToPay
 Place To pay package
-
-##Installation 
-Composer:
-```sh
-composer require jjcaicedo/place-to-pay
-```
 ##prerequisites 
 ###Data base table
 Data table to register payments
