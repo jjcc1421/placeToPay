@@ -24,9 +24,16 @@ Schema::create('payments', function (Blueprint $table) {
 $auth = new \JJCaicedo\PlaceToPay\Models\Authentication(<Place to pay AuthId>, <Place to pay TranKey>, <Additional Data>|null);
 \JJCaicedo\PlaceToPay\PlaceToPay::connect($auth, <Soap wdsl url>);
 ```
-###TransactionRequest
+###Transaction Request
 Send Transaction request
 Check models classes
 ```php
-\JJCaicedo\PlaceToPay\PlaceToPay::createTransaction(<PSETransactionRequest>);//If it works payment status Sent
+$transactionResponse = \JJCaicedo\PlaceToPay\PlaceToPay::createTransaction(<PSETransactionRequest>);//If it works Payment status Sent
+```
+
+###Get Transaction Info
+Send Transaction request
+Check models classes
+```php
+$transactionInformation = \JJCaicedo\PlaceToPay\PlaceToPay::getTransactionInformation(<transactionId>); //If it works Payment status to $transactionInformation->transactionState;
 ```
