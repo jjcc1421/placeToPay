@@ -7,7 +7,7 @@
       "email": "jjcc1421@gmail.com"
     }
   ],
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "license": "MIT",
   "require": {
     "illuminate/database": "^5.2",
