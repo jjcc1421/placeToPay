@@ -7,10 +7,10 @@
       "email": "jjcc1421@gmail.com"
     }
   ],
-  "type": "library",
   "minimum-stability": "dev",
   "license": "MIT",
   "require": {
-    "illuminate/database": "^5.2"
+    "illuminate/database": "^5.2",
+    "vendor/packageb": "dev-master"
   }
 }
